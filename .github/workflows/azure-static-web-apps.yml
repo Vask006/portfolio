@@ -49,7 +49,7 @@ jobs:
           action: "upload"
           skip_app_build: true
           skip_api_build: true
-          app_artifact_location: "out"
+          app_location: "out"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
