@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Portfolio Website",
+    "description": "A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS.",
+    "url": "https://example.com",
+    "github": "https://github.com/username/portfolio",
+    "tags": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "featured": true
+  },
+  {
+    "title": "Open Source Library",
+    "description": "A useful utility library for React developers.",
+    "github": "https://github.com/username/library",
+    "tags": ["React", "TypeScript", "Open Source"],
+    "featured": true
+  },
+  {
+    "title": "Side Project",
+    "description": "A personal side project I've been working on.",
+    "url": "https://example.com/side-project",
+    "tags": ["Web Development", "Personal"],
+    "featured": false
+  }
+]
