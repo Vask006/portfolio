@@ -1,29 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState } from "react";
 
 export function ProfileCard() {
-  const [showImage, setShowImage] = useState(false);
-
-  useEffect(() => {
-    const img = new window.Image();
-    img.onload = () => setShowImage(true);
-    img.onerror = () => setShowImage(false);
-    img.src = "/profile.jpg";
-  }, []);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
       <div className="flex flex-col items-center mb-6">
         <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-700 shadow-lg mb-4">
-          {showImage ? (
-            <Image
+          {!imageError ? (
+            <img
               src="/profile.jpg"
               alt="Anand Kumar Vedantham"
               width={128}
               height={128}
               className="object-cover w-full h-full"
+              onError={() => setImageError(true)}
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
