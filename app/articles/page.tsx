@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getAllContent, getAllTags } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
+import { Search } from "@/components/Search";
+import { buildSearchIndex } from "@/lib/search";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,10 +13,14 @@ export const metadata: Metadata = {
 export default function ArticlesPage() {
   const articles = getAllContent("articles");
   const tags = getAllTags("articles");
+  const searchIndex = buildSearchIndex();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">Articles</h1>
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold mb-6">Articles</h1>
+        <Search index={searchIndex} />
+      </div>
 
       {tags.length > 0 && (
         <div className="mb-8">

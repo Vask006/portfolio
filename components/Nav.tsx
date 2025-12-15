@@ -13,7 +13,7 @@ export function Nav() {
               href="/"
               className="text-xl font-bold text-gray-900 dark:text-gray-100"
             >
-              Portfolio
+              Home
             </Link>
             <div className="hidden md:flex gap-6">
               <Link

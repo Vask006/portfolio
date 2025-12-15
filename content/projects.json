@@ -1,24 +1,24 @@
 [
   {
-    "title": "Portfolio Website",
-    "description": "A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS.",
+    "title": "Enterprise Cloud Platform",
+    "description": "Architected and delivered a scalable Azure-based platform serving 10M+ users with 99.99% uptime. Implemented DevSecOps pipelines reducing deployment time by 70% and enhanced security posture through automated compliance checks and zero-trust networking.",
     "url": "https://example.com",
     "github": "https://github.com/username/portfolio",
-    "tags": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "tags": ["Azure", "DevSecOps", "Scalability", "Security"],
     "featured": true
   },
   {
-    "title": "Open Source Library",
-    "description": "A useful utility library for React developers.",
+    "title": "AI-Powered Analytics System",
+    "description": "Designed a high-performance AI analytics platform processing 100TB+ daily, reducing query latency by 85% through distributed architecture and intelligent caching. Enabled real-time decision-making for enterprise clients with sub-second response times.",
     "github": "https://github.com/username/library",
-    "tags": ["React", "TypeScript", "Open Source"],
+    "tags": ["AI", "Performance", "Enterprise", "Cloud"],
     "featured": true
   },
   {
-    "title": "Side Project",
-    "description": "A personal side project I've been working on.",
+    "title": "Secure Microservices Architecture",
+    "description": "Led migration of monolithic system to microservices on Azure Kubernetes, improving scalability and reducing infrastructure costs by 40%. Implemented comprehensive security controls and observability, achieving SOC 2 compliance.",
     "url": "https://example.com/side-project",
-    "tags": ["Web Development", "Personal"],
+    "tags": ["Kubernetes", "Microservices", "Security", "Azure"],
     "featured": false
   }
 ]
