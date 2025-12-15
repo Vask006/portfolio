@@ -17,6 +17,12 @@ export function Nav() {
             </Link>
             <div className="hidden md:flex gap-6">
               <Link
+                href="/about"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                About
+              </Link>
+              <Link
                 href="/blog"
                 className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100"
               >
