@@ -40,7 +40,7 @@ export function ProfileCard() {
           Quick Highlights
         </h4>
         <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-          <li>• 18+ years of experience</li>
+          <li>• 19+ years of experience</li>
           <li>• Enterprise architecture & frameworks</li>
           <li>• Cloud-native & AI systems</li>
           <li>• Security-first design</li>

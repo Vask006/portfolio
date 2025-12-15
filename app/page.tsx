@@ -22,21 +22,80 @@ export default function HomePage() {
               Software Architect | Cloud, AI & Enterprise Systems
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-              I design and scale secure, enterprise-grade platforms on Azure and write about cloud architecture, AI, and digital transformation.
+              I architect security-first, enterprise-grade platforms on Azure and write about cloud architecture, AI, and digital transformation. My work focuses on scalable systems, governance, and DevSecOps practices that make security measurable from design through operations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
               >
                 View Projects
               </Link>
               <Link
                 href="/articles"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
               >
                 Read Articles
               </Link>
+            </div>
+            
+            {/* Connect Section */}
+            <div className="mb-8">
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Connect
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="mailto:vask006@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Email: vask006@gmail.com"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <span>📧</span>
+                  <span>Email</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/anand006/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <span>💼</span>
+                  <span>LinkedIn</span>
+                </a>
+                <a
+                  href="https://medium.com/@vask006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Medium profile"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <span>✍️</span>
+                  <span>Medium</span>
+                </a>
+                <a
+                  href="https://www.facebook.com/anand.kumar.vedantham.2025"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook profile"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <span>📘</span>
+                  <span>Facebook</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/anandkumarvedantham/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram profile"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <span>📷</span>
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </div>
           {/* Profile Photo */}

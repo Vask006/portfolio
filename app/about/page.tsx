@@ -228,10 +228,10 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Evidence Anchors */}
+          {/* Selected Contributions */}
           <div className="border-t border-gray-200 dark:border-gray-800 pt-8 mt-8">
             <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
-              Evidence anchors:
+              Selected Contributions:
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
