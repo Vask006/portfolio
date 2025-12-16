@@ -10,6 +10,11 @@ import { PaperCard } from "@/components/PaperCard";
 export default function ArticlesClient() {
   const allArticles = getAllArticles();
   const featuredArticles = getFeaturedArticles();
+  
+  // Filter out featured articles from all articles to avoid duplication
+  const nonFeaturedArticles = allArticles.filter(
+    (article) => !article.featured
+  );
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -64,7 +69,7 @@ export default function ArticlesClient() {
           </h2>
         </div>
         <div className="space-y-0">
-          {allArticles.map((article) => (
+          {nonFeaturedArticles.map((article) => (
             <PaperCard
               key={article.slug}
               title={article.title}
