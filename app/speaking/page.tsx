@@ -142,6 +142,25 @@ export default function SpeakingPage() {
                 )}
               </div>
 
+              {/* Topics */}
+              {"topics" in featuredTalk && featuredTalk.topics && featuredTalk.topics.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                    Topics
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {featuredTalk.topics.map((topic) => (
+                      <span
+                        key={topic}
+                        className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Talk Summary */}
               {featuredTalk.summary && featuredTalk.summary.length > 0 && (
                 <div className="mb-6">
@@ -151,6 +170,34 @@ export default function SpeakingPage() {
                   <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
                     {featuredTalk.summary.map((point, index) => (
                       <li key={index}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Outcomes */}
+              {"outcomes" in featuredTalk && featuredTalk.outcomes && featuredTalk.outcomes.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                    Key Outcomes
+                  </h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+                    {featuredTalk.outcomes.map((outcome, index) => (
+                      <li key={index}>{outcome}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Highlights */}
+              {"highlights" in featuredTalk && featuredTalk.highlights && featuredTalk.highlights.length > 0 && (
+                <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                    Highlights
+                  </h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+                    {featuredTalk.highlights.map((highlight, index) => (
+                      <li key={index}>{highlight}</li>
                     ))}
                   </ul>
                 </div>
