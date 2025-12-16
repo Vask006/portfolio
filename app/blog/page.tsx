@@ -1,74 +1,179 @@
-import Link from "next/link";
-import { getAllContent, getAllTags } from "@/lib/content";
-import { formatDate } from "@/lib/utils";
-import { Search } from "@/components/Search";
-import { buildSearchIndex } from "@/lib/search";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Blog posts and articles",
-};
+import { useState, useMemo } from "react";
+import { getAllBlogPosts, getFeaturedBlogPosts, getAllTags, type BlogPost } from "@/src/data/blog";
+import { BlogPostCard } from "@/components/BlogPostCard";
 
 export default function BlogPage() {
-  const posts = getAllContent("blog");
-  const tags = getAllTags("blog");
-  const searchIndex = buildSearchIndex();
+  const allPosts = getAllBlogPosts();
+  const featuredPosts = getFeaturedBlogPosts();
+  const allAvailableTags = getAllTags();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string>("");
+
+  // Filter posts based on search and tag
+  const filteredPosts = useMemo(() => {
+    let filtered = allPosts.filter((post) => !post.featured);
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter((post) =>
+        post.title.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply tag filter
+    if (selectedTag) {
+      filtered = filtered.filter((post) => post.tags.includes(selectedTag));
+    }
+
+    // Sort alphabetically by title
+    return filtered.sort((a, b) => a.title.localeCompare(b.title));
+  }, [allPosts, searchQuery, selectedTag]);
+
+  const filteredFeaturedPosts = useMemo(() => {
+    let filtered = featuredPosts;
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter((post) =>
+        post.title.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply tag filter
+    if (selectedTag) {
+      filtered = filtered.filter((post) => post.tags.includes(selectedTag));
+    }
+
+    return filtered;
+  }, [featuredPosts, searchQuery, selectedTag]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-6">Blog</h1>
-        <Search index={searchIndex} />
-      </div>
+      {/* Header */}
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Blog
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-3xl">
+          Writing on cloud architecture, enterprise systems, AI, governance,
+          DevSecOps, and integration patterns.
+        </p>
 
-      {tags.length > 0 && (
+        {/* Follow on Medium Link */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold mb-4">Tags</h2>
+          <a
+            href="https://medium.com/@vask006"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            <span>Follow on Medium</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        {/* Search and Filter Controls */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          {/* Search Input */}
+          <div className="flex-1">
+            <input
+              type="text"
+              placeholder="Search posts by title..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {/* Tag Filter Dropdown */}
+          <div className="sm:w-64">
+            <select
+              value={selectedTag}
+              onChange={(e) => setSelectedTag(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Tags</option>
+              {allAvailableTags.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Tag Chips (Alternative filter UI) */}
+        <div className="mb-8">
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Link
+            <button
+              onClick={() => setSelectedTag("")}
+              className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                selectedTag === ""
+                  ? "bg-blue-600 dark:bg-blue-500 text-white"
+                  : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+              }`}
+            >
+              All
+            </button>
+            {allAvailableTags.map((tag) => (
+              <button
                 key={tag}
-                href={`/blog/tag/${tag}`}
-                className="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded-full text-sm hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                onClick={() => setSelectedTag(tag)}
+                className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  selectedTag === tag
+                    ? "bg-blue-600 dark:bg-blue-500 text-white"
+                    : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+                }`}
               >
                 {tag}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Featured Posts Section */}
+      {filteredFeaturedPosts.length > 0 && (
+        <section className="mb-16">
+          <div className="border-b border-gray-200 dark:border-gray-800 pb-2 mb-6">
+            <h2 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-wide">
+              Featured
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {filteredFeaturedPosts.map((post) => (
+              <BlogPostCard key={post.id} post={post} variant="featured" />
+            ))}
+          </div>
+        </section>
       )}
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="block p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            <h2 className="text-xl font-semibold mb-2">{post.frontmatter.title}</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              {post.frontmatter.description}
+      {/* All Posts Section */}
+      <section>
+        <div className="border-b border-gray-200 dark:border-gray-800 pb-2 mb-6">
+          <h2 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-wide">
+            All Posts
+          </h2>
+        </div>
+        {filteredPosts.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPosts.map((post) => (
+              <BlogPostCard key={post.id} post={post} variant="default" />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-400">
+              No posts found matching your filters.
             </p>
-            <div className="flex items-center justify-between text-sm text-gray-500">
-              <span>{formatDate(post.frontmatter.date)}</span>
-              <span>{post.readingTime} min read</span>
-            </div>
-            {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-              <div className="flex gap-2 mt-4 flex-wrap">
-                {post.frontmatter.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs bg-gray-200 dark:bg-gray-800 rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </Link>
-        ))}
-      </div>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
