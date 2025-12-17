@@ -63,3 +63,4 @@ export function BlogPostCard({ post, variant = "default" }: BlogPostCardProps) {
   );
 }
 
+

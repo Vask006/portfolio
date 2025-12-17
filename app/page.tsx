@@ -120,7 +120,7 @@ export default function HomePage() {
             {recentBlog.map((post) => (
               <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                href="/blog"
                 className="block p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
               >
                 <h3 className="font-semibold mb-2">{post.frontmatter.title}</h3>
